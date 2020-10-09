@@ -36,8 +36,9 @@ def export_dashboards(args):
         if not os.path.exists(f"dashboards/{folder}"):
             os.makedirs(f"dashboards/{folder}")
             print(f"created folder dashboards/{folder}")
-        with open(f"dashboards/{folder}/{filename}.json", "w+") as f:
-            json.dump(dashboard, f, indent=4)
+        if not dashboard["meta"]["isFolder"]:
+            with open(f"dashboards/{folder}/{filename}.json", "w+") as f:
+                json.dump(dashboard, f, indent=4)
 
 
 if __name__ == "__main__":
