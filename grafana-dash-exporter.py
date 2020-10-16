@@ -38,7 +38,7 @@ def export_dashboards(args):
             print(f"created folder dashboards/{folder}")
         if not dashboard["meta"]["isFolder"]:
             with open(f"dashboards/{folder}/{filename}.json", "w+") as f:
-                json.dump(dashboard, f, indent=4)
+                json.dump(dashboard, f, indent=4, sort_keys=True)
 
 
 if __name__ == "__main__":
