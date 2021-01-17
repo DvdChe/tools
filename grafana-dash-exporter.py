@@ -39,7 +39,7 @@ def export_dashboards(args):
         if not os.path.exists(f"{folder_path}"):
             os.makedirs(f"{folder_path}")
             print(f"created folder {folder_path}")
-        if not dashboard["meta"]["isFolder"]:
+        if dashboard["meta"]["type"] == "db":
             with open(f"{folder_path}/{filename}.json", "w+") as f:
                 json.dump(dashboard, f, indent=4, sort_keys=True)
 
