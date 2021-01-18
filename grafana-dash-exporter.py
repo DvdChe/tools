@@ -14,14 +14,19 @@ def export_dashboards(args):
 
     req_search_dashobards = requests.get(
         f"{args.host}/api/search/?query=",
-        headers={"Authorization": f"Bearer {args.key}", "Accept": "application/json",},
+        headers={
+            "Authorization": f"Bearer {args.key}",
+            "Accept": "application/json",
+        },
     )
     dashboards = json.loads(req_search_dashobards.text)
     for i in dashboards:
         if args.export_folder:
-            if i['type'] == 'dash-folder' and i['title'] != args.export_folder:
+            if i["type"] == "dash-folder" and i["title"] != args.export_folder:
                 continue
-            if i['type'] == 'dash-db' and ('folderTitle' not in i or i['folderTitle'] != args.export_folder):
+            if i["type"] == "dash-db" and (
+                "folderTitle" not in i or i["folderTitle"] != args.export_folder
+            ):
                 continue
         req = requests.get(
             f"{args.host}/api/dashboards/uid/{i['uid']}",
